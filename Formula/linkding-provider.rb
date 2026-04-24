@@ -11,7 +11,8 @@ class LinkdingProvider < Formula
   end
 
   def plugin_dir
-    Pathname.new(ENV["HOME"]) / "~/.config/noctalia/plugins" / plugin_id
+    home = `echo $HOME`.strip
+    Pathname.new("#{home}/.config/noctalia/plugins/#{plugin_id}")
   end
 
   def install
