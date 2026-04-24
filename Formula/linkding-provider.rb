@@ -8,7 +8,7 @@ class LinkdingProvider < Formula
   # Update the sha256 after tagging a release:
   #   curl -L https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz | sha256sum
   url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
-  sha256 "REPLACE_WITH_ACTUAL_SHA256_AFTER_TAGGING"
+  sha256 "dcb8d717270245720a8f430457244173eb92e8a0e84e0e5047a114e9f28b90a1"
 
   # No dependencies — pure QML plugin, runtime is Noctalia Shell itself
   bottle :unneeded
