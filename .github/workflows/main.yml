@@ -1,0 +1,44 @@
+name: Update linkding-provider formula sha256
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "plugins/linkding-provider/**"
+      - "Formula/linkding-provider.rb"
+
+jobs:
+  update-formula:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compute sha256 of master zip
+        id: sha
+        run: |
+          SHA=$(curl -sL https://github.com/Akinus21/homebrew-tap/archive/refs/heads/master.zip | sha256sum | awk '{print $1}')
+          echo "sha256=$SHA" >> $GITHUB_OUTPUT
+          echo "Computed sha256: $SHA"
+
+      - name: Update formula
+        run: |
+          SHA="${{ steps.sha.outputs.sha256 }}"
+          sed -i "s|sha256 \".*\"|sha256 \"$SHA\"|" Formula/linkding-provider.rb
+          echo "Updated formula with sha256: $SHA"
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --quiet && echo "No changes to commit" && exit 0
+          git add Formula/linkding-provider.rb
+          git commit -m "chore: update linkding-provider sha256 [skip ci]"
+          git push
