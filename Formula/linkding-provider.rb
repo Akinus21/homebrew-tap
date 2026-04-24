@@ -1,10 +1,10 @@
 class LinkdingProvider < Formula
   desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
-  version "1.0.1"
+  version "1.0.0"
 
-  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.1.tar.gz"
-  sha256 "96328a9119ef8f9ce8b02b73b40323962055f3e75dfd9a8792d7ea47801186d1"
+  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
+  sha256 "PLACEHOLDER"
 
   def plugin_id
     "linkding-provider"
@@ -19,8 +19,21 @@ class LinkdingProvider < Formula
   end
 
   def post_install
+    ohai "plugin_id: #{plugin_id}"
+    ohai "plugin_dir: #{plugin_dir}"
+    ohai "prefix: #{prefix}"
+    ohai "source: #{prefix / plugin_id}"
+    ohai "source exists: #{(prefix / plugin_id).exist?}"
+    ohai "source children: #{(prefix / plugin_id).children.map(&:basename).join(", ") rescue "ERROR"}"
+
     plugin_dir.mkpath
-    (prefix / plugin_id).each_child { |f| cp_r f, plugin_dir }
+    ohai "plugin_dir created: #{plugin_dir.exist?}"
+
+    (prefix / plugin_id).each_child do |f|
+      ohai "copying: #{f.basename}"
+      cp_r f, plugin_dir
+    end
+
     ohai "Linkding Provider installed to #{plugin_dir}"
   end
 
