@@ -3,9 +3,6 @@ class LinkdingProvider < Formula
   homepage "https://github.com/Akinus21/homebrew-tap"
   version "1.0.0"
 
-  # No url/sha256 needed — files live directly in the tap
-  bottle :unneeded
-
   def install
     (prefix / "linkding-provider").install Dir["plugins/linkding-provider/*"]
   end
