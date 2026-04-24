@@ -1,10 +1,10 @@
 class LinkdingProvider < Formula
   desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
-  version "1.0.3"
+  version "1.0.0"
 
-  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.3.tar.gz"
-  sha256 "ad9d7af7c15ed327f0559b1598cde1ed43ad8b97bcb6a415a59472bf2c386a4d"
+  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
+  sha256 "PLACEHOLDER"
 
   def plugin_id
     "linkding-provider"
@@ -16,25 +16,12 @@ class LinkdingProvider < Formula
   end
 
   def install
+    # Install files into the Cellar
     (prefix / plugin_id).install Dir["plugins/#{plugin_id}/*"]
-  end
 
-  def post_install
-    ohai "plugin_id: #{plugin_id}"
-    ohai "plugin_dir: #{plugin_dir}"
-    ohai "prefix: #{prefix}"
-    ohai "source: #{prefix / plugin_id}"
-    ohai "source exists: #{(prefix / plugin_id).exist?}"
-    ohai "source children: #{(prefix / plugin_id).children.map(&:basename).join(", ") rescue "ERROR"}"
-
+    # Copy directly to Noctalia plugins dir during install
     plugin_dir.mkpath
-    ohai "plugin_dir created: #{plugin_dir.exist?}"
-
-    (prefix / plugin_id).each_child do |f|
-      ohai "copying: #{f.basename}"
-      cp_r f, plugin_dir
-    end
-
+    (prefix / plugin_id).each_child { |f| cp_r f, plugin_dir }
     ohai "Linkding Provider installed to #{plugin_dir}"
   end
 
