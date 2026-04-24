@@ -56,4 +56,3 @@ class LinkdingProvider < Formula
     assert_equal "linkding-provider", manifest["id"]
     assert_equal "1.0.0", manifest["version"]
   end
-end
