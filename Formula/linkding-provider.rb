@@ -1,7 +1,8 @@
 class LinkdingProvider < Formula
   desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
-  version "1.0.0"
+
+  head "https://github.com/Akinus21/homebrew-tap.git", branch: "main"
 
   def plugin_id
     "linkding-provider"
@@ -53,6 +54,5 @@ class LinkdingProvider < Formula
 
     manifest = JSON.parse((prefix / plugin_id / "manifest.json").read)
     assert_equal "linkding-provider", manifest["id"]
-    assert_equal "1.0.0", manifest["version"]
   end
 end
