@@ -1,10 +1,10 @@
 class LinkdingProvider < Formula
   desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
-  version "1.0.0"
+  version "1.0.2"
 
-  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
-  sha256 "PLACEHOLDER"
+  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.2.tar.gz"
+  sha256 "13c8695893e4dc41df97edee27e9f71193d53735dd45127706a6695485e993af"
 
   def plugin_id
     "linkding-provider"
