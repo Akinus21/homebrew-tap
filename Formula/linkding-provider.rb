@@ -2,7 +2,7 @@ class LinkdingProvider < Formula
   desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
 
-  head "https://github.com/Akinus21/homebrew-tap.git", branch: "main"
+  head "https://github.com/Akinus21/homebrew-tap.git", branch: "master"
 
   def plugin_id
     "linkding-provider"
