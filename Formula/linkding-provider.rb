@@ -1,34 +1,20 @@
 class LinkdingProvider < Formula
-  desc "Noctalia launcher provider for searching and managing Linkding bookmarks"
+  desc "Noctalia launcher provider for Linkding bookmarks"
   homepage "https://github.com/Akinus21/homebrew-tap"
   version "1.0.0"
 
-  # No compiled binary — we distribute the plugin files directly from the tap.
-  # Homebrew still needs a url/sha256, so we point at the tap archive itself.
-  # Update the sha256 after tagging a release:
-  #   curl -L https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz | sha256sum
-  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
-  sha256 "dcb8d717270245720a8f430457244173eb92e8a0e84e0e5047a114e9f28b90a1"
-
-  # No dependencies — pure QML plugin, runtime is Noctalia Shell itself
+  # No url/sha256 needed — files live directly in the tap
   bottle :unneeded
 
-  PLUGIN_ID = "linkding-provider"
-  PLUGIN_DIR = Pathname.new(ENV["HOME"]) / ".config/noctalia/plugins" / PLUGIN_ID
-
   def install
-    # Install plugin files into the Cellar as the canonical source of truth
-    (prefix / PLUGIN_ID).install Dir["plugins/#{PLUGIN_ID}/*"]
+    (prefix / "linkding-provider").install Dir["plugins/linkding-provider/*"]
   end
 
   def post_install
-    # Create the Noctalia plugin directory if it doesn't exist
-    PLUGIN_DIR.mkpath
-
-    # Copy all plugin files from the Cellar into the Noctalia plugins directory
-    (prefix / PLUGIN_ID).each_child do |file|
-      cp_r file, PLUGIN_DIR
-    end
+    plugin_dir = Pathname.new(ENV["HOME"]) / ".config/noctalia/plugins/linkding-provider"
+    plugin_dir.mkpath
+    (prefix / "linkding-provider").each_child { |f| cp_r f, plugin_dir }
+  end
 
     ohai "Linkding Provider installed to #{PLUGIN_DIR}"
   end
