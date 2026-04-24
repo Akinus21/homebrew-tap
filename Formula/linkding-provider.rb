@@ -3,8 +3,8 @@ class LinkdingProvider < Formula
   homepage "https://github.com/Akinus21/homebrew-tap"
   version "1.0.0"
 
-  url "https://github.com/Akinus21/homebrew-tap/archive/refs/heads/master.zip"
-  sha256 "99cdfb0f651676444ca5f666a22e82a8a9ff8314bf3b00bb0089fdb1b2a69eca"
+  url "https://github.com/Akinus21/homebrew-tap/archive/refs/tags/linkding-provider-1.0.0.tar.gz"
+  sha256 "PLACEHOLDER"
 
   def plugin_id
     "linkding-provider"
