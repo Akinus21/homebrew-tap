@@ -1,8 +1,8 @@
 class BlueakSessionManager < Formula
   desc "Saves and restores niri compositor session state"
   homepage "https://github.com/Akinus21/blueak-session-manager"
-  version "0.0.7"
-  url "https://github.com/Akinus21/blueak-session-manager/releases/download/v0.0.7/blueak-session-manager"
+  version "0.0.8"
+  url "https://github.com/Akinus21/blueak-session-manager/releases/download/v0.0.8/blueak-session-manager"
   sha256 "6d5a3a5ac5ee6e5a9c102b5cf6c5e370993f89aa968288b2613a16bdd3a4f38d"
 
   def install
@@ -52,9 +52,16 @@ class BlueakSessionManager < Formula
     (systemd_dir / "blueak-session-save.service").write save_service
     (systemd_dir / "blueak-session-restore.service").write restore_service
 
-    system("systemctl", "--user", "daemon-reload")
-    system("systemctl", "--user", "enable", "blueak-session-save.service", "blueak-session-restore.service")
-    system("systemctl", "--user", "start", "blueak-session-save.service", "blueak-session-restore.service")
+    puts "\n========================================"
+    puts "Systemd services installed to:"
+    puts "  #{systemd_dir}/blueak-session-save.service"
+    puts "  #{systemd_dir}/blueak-session-restore.service"
+    puts ""
+    puts "To enable, run these commands manually:"
+    puts "  systemctl --user daemon-reload"
+    puts "  systemctl --user enable blueak-session-save.service blueak-session-restore.service"
+    puts "  systemctl --user start blueak-session-save.service blueak-session-restore.service"
+    puts "========================================\n"
   end
 
   test do
