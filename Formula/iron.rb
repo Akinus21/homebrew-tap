@@ -24,13 +24,9 @@ MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme
 StartupNotify=true
 Terminal=false
     DESKTOP
-  end
 
-  def post_install
-    user_apps = Pathname.new("#{Dir.home}/.local/share/applications")
-    user_apps.mkpath
-
-    (user_apps/"org.blueak.iron.desktop").write <<~DESKTOP
+    # Save a copy in pkgshare for post_install to use
+    (pkgshare/"org.blueak.iron.desktop").write <<~DESKTOP
 [Desktop Entry]
 Type=Application
 Name=Iron
@@ -42,6 +38,30 @@ MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme
 StartupNotify=true
 Terminal=false
     DESKTOP
+  end
+
+  def post_install
+    user_home = ENV.fetch("HOME") { Dir.home }
+    user_apps = Pathname.new("#{user_home}/.local/share/applications")
+    desktop_file = user_apps/"org.blueak.iron.desktop"
+
+    user_apps.mkpath
+    FileUtils.cp pkgshare/"org.blueak.iron.desktop", desktop_file
+  rescue => e
+    opoo "Could not create user .desktop entry: #{e.message}"
+    opoo "You can manually copy #{pkgshare}/org.blueak.iron.desktop to ~/.local/share/applications/"
+  end
+
+  def caveats
+    <<~EOS
+      A system-wide .desktop entry has been installed to:
+        #{share}/applications/org.blueak.iron.desktop
+
+      If Iron does not appear in your application menu, run:
+        mkdir -p ~/.local/share/applications
+        cp #{pkgshare}/org.blueak.iron.desktop ~/.local/share/applications/
+        update-desktop-database ~/.local/share/applications
+    EOS
   end
 
   test do
