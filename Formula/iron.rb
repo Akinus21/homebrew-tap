@@ -17,16 +17,34 @@ class Iron < Formula
 Type=Application
 Name=Iron
 Comment=GTK4 keyboard-driven web browser for BlueAK
-Exec=iron %u
+Exec=#{opt_bin}/iron %u
 Icon=org.blueak.iron
 Categories=Network;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
 StartupNotify=true
 Terminal=false
-DESKTOP
+    DESKTOP
+  end
+
+  def post_install
+    user_apps = Pathname.new("#{Dir.home}/.local/share/applications")
+    user_apps.mkpath
+
+    (user_apps/"org.blueak.iron.desktop").write <<~DESKTOP
+[Desktop Entry]
+Type=Application
+Name=Iron
+Comment=GTK4 keyboard-driven web browser for BlueAK
+Exec=#{opt_bin}/iron %u
+Icon=org.blueak.iron
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
+StartupNotify=true
+Terminal=false
+    DESKTOP
   end
 
   test do
-    assert_match "iron", shell_output("#{bin}/iron --version 2>&1 || true")
+    system bin/"iron", "--version"
   end
 end
