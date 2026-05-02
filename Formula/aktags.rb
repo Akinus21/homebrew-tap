@@ -1,15 +1,29 @@
 class Aktags < Formula
-  desc "CLI tool for managing tags across multiple files"
+  desc "AI-powered tag-based file browser with background daemon"
   homepage "https://github.com/Akinus21/Aktags"
-  version "0.1.0"
-  url "https://github.com/Akinus21/Aktags/releases/download/v0.1.0-20260423003731-c5aecdc0/aktags"
-  sha256 "5703c9c33bd0d8d4f46baf4ee39ae5c1146101b0fd5d979f60427abaebda71ca"
+  version "0.0.1"
+
+  on_linux do
+    url "https://github.com/Akinus21/Aktags/releases/download/v0.0.1/aktags"
+    sha256 "38417ade8d036f8c4286997ffde38630a63f7efd8a1a6698a9b11493460ddf6d"
+  end
 
   def install
     bin.install "aktags"
   end
 
+  def post_install
+    (var/"aktags").mkpath
+  end
+
+  service do
+    run [opt_bin/"aktags", "--daemon"]
+    keep_alive true
+    log_path var/"log/aktags.log"
+    error_log_path var/"log/aktags.log"
+  end
+
   test do
-    system bin/"aktags", "--version"
+    system "#{bin}/aktags", "--help"
   end
 end
