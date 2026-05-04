@@ -1,9 +1,9 @@
 class Aktools < Formula
   desc "Modular CLI tool runner with module registry"
   homepage "https://github.com/Akinus21/aktools"
-  version "0.0.64"
-  url "https://github.com/Akinus21/aktools/releases/download/v0.0.64/aktools"
-  sha256 "266e69b650648f7dc10b0b520d86a4fc8d2178bb8afbf95f0efc243344a9448f"
+  version "0.0.65"
+  url "https://github.com/Akinus21/aktools/releases/download/v0.0.65/aktools"
+  sha256 "4ff92a6ad6c48c3f0bb7131a5298d6596279b1949ac6305ef9286659cb3e5394"
   def install
     bin.install "aktools"
   end
