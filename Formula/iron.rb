@@ -1,9 +1,9 @@
 class Iron < Formula
   desc "GTK4 keyboard-driven web browser for BlueAK"
   homepage "https://github.com/Akinus21/Iron"
-  version "0.0.57"
-  url "https://github.com/Akinus21/Iron/releases/download/v0.0.57/iron"
-  sha256 "c8fc59e5c309ab0eade797992dc05f1ce01cd1acdda590727bb592c97a06b4df"
+  version "0.0.58"
+  url "https://github.com/Akinus21/Iron/releases/download/v0.0.58/iron"
+  sha256 "e22f640817e53534201547961049cc15097b7f8ad4c1761438e8a2e9f957b5fd"
   depends_on "gtk4"
   depends_on "libadwaita"
   depends_on "webkitgtk"
