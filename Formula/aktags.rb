@@ -1,11 +1,11 @@
 class Aktags < Formula
   desc "AI-powered tag-based file browser with background daemon"
   homepage "https://github.com/Akinus21/Aktags"
-  version "0.0.43"
+  version "0.0.44"
 
   on_linux do
-    url "https://github.com/Akinus21/Aktags/releases/download/v0.0.43/aktags"
-    sha256 "36a0a71e27dd507937a096f2e28e4532610fa8dde6491098e32c666495cb2665"
+    url "https://github.com/Akinus21/Aktags/releases/download/v0.0.44/aktags"
+    sha256 "1473fbf50b26d6b87f15a89c05e97de77f7792aba60641089a915fa0fc263eb1"
   end
 
   def install
