@@ -1,9 +1,9 @@
 class Akspraypaint < Formula
   desc "AKSprayPaint command line utility"
   homepage "https://github.com/Akinus21/AKSprayPaint"
-  url "https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.60/akspraypaint"
-  sha256 "fa436ed367dc07b0f1dfd97c015284b8863997dffbeedb85505562ddd4a0714f"
-  version "0.0.60"
+  url "https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.61/akspraypaint"
+  sha256 "dae312c3956a9a02c50e86d2466c552eedf528bf1d7839bb327acc3dbbd83bd2"
+  version "0.0.61"
   license "MIT"
 
   def install
