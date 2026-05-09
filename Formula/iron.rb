@@ -1,16 +1,16 @@
 class Iron < Formula
   desc "GTK4 keyboard-driven web browser for BlueAK"
   homepage "https://github.com/Akinus21/Iron"
-  version "0.0.87"
-  url "https://github.com/Akinus21/Iron/releases/download/v0.0.87/iron"
-  sha256 "8f742f7b67813366f40f8f580840f9075b0ac0cb9d8c8469455c49798756ecf1"
+  version "0.0.88"
+  url "https://github.com/Akinus21/Iron/releases/download/v0.0.88/iron"
+  sha256 "a4561b4153463bdacb7af2387583af021db6058017fcd85ac90d834f0ebd9c5b"
 
   depends_on "gtk4"
   depends_on "libadwaita"
 
   resource "cef-runtime" do
-    url "https://github.com/Akinus21/Iron/releases/download/v0.0.87/cef-runtime.tar.gz"
-    sha256 "62e487ed574ae6279dd85d0552dcbfc341eab74bbb41698cb2b3c6b34b861727"
+    url "https://github.com/Akinus21/Iron/releases/download/v0.0.88/cef-runtime.tar.gz"
+    sha256 "ddad3652c4b264fe3bd95ae337575c967769723ee6554d63ec66a1f868df85f1"
   end
 
   def install
@@ -18,6 +18,8 @@ class Iron < Formula
 
     resource("cef-runtime").stage do
       lib.install "libcef.so"
+      lib.install "icudtl.dat"
+      lib.install "v8_context_snapshot.bin" if File.exist?("v8_context_snapshot.bin")
       (share/"iron").install Dir["*.pak"], "icudtl.dat"
       (share/"iron"/"locales").install Dir["locales/*"] if Dir.exist?("locales")
       (share/"iron").install "v8_context_snapshot.bin" if File.exist?("v8_context_snapshot.bin")
