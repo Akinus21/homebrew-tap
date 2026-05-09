@@ -1,16 +1,16 @@
 class Iron < Formula
   desc "GTK4 keyboard-driven web browser for BlueAK"
   homepage "https://github.com/Akinus21/Iron"
-  version "0.0.89"
-  url "https://github.com/Akinus21/Iron/releases/download/v0.0.89/iron"
-  sha256 "a4561b4153463bdacb7af2387583af021db6058017fcd85ac90d834f0ebd9c5b"
+  version "0.0.90"
+  url "https://github.com/Akinus21/Iron/releases/download/v0.0.90/iron"
+  sha256 "8f071c241f8e996714645b8e35010987e331294f4daccc68c6ec976030afd516"
 
   depends_on "gtk4"
   depends_on "libadwaita"
 
   resource "cef-runtime" do
-    url "https://github.com/Akinus21/Iron/releases/download/v0.0.89/cef-runtime.tar.gz"
-    sha256 "9812145836ee3513e6f7c5b4d63f64087f6f819aaa37330102aa979869208cec"
+    url "https://github.com/Akinus21/Iron/releases/download/v0.0.90/cef-runtime.tar.gz"
+    sha256 "7732459588a470e2b48af8dd30536b37b11f69b03f882b9350190f113f11614c"
   end
 
   def install
@@ -18,12 +18,11 @@ class Iron < Formula
 
     resource("cef-runtime").stage do
       lib.install "libcef.so"
-      lib.install "icudtl.dat" if File.exist?("icudtl.dat")
-      lib.install "v8_context_snapshot.bin" if File.exist?("v8_context_snapshot.bin")
-      (share/"iron").install Dir["*.pak"] if !Dir["*.pak"].empty?
-      (share/"iron").install "icudtl.dat" if File.exist?("icudtl.dat")
-      (share/"iron"/"locales").install Dir["locales/*"] if Dir.exist?("locales") && !Dir["locales/*"].empty?
-      (share/"iron").install "v8_context_snapshot.bin" if File.exist?("v8_context_snapshot.bin")
+      Dir.glob("*.dat").each { |f| lib.install f }
+      Dir.glob("*.bin").each { |f| lib.install f }
+      Dir.glob("*.pak").each { |f| lib.install f }
+      (share/"iron").install Dir.glob("*.pak")
+      (share/"iron"/"locales").install Dir.glob("locales/*") if Dir.exist?("locales")
     end
 
     (bin/"iron").write <<~SH
