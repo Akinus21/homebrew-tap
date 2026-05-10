@@ -1,15 +1,15 @@
 class Iron < Formula
   desc "GTK4 keyboard-driven web browser for BlueAK"
   homepage "https://github.com/Akinus21/Iron"
-  version "0.0.115"
-  url "https://github.com/Akinus21/Iron/releases/download/v0.0.115/iron"
-  sha256 "3132bba4880bc8cfa9474754d41be1f8b2ddf4170cf9d3c700271c672846c59e"
+  version "0.0.116"
+  url "https://github.com/Akinus21/Iron/releases/download/v0.0.116/iron"
+  sha256 "9bd6757be06b0d2138ffaa9b9b84bfb7b03eb937d71d152011eb1aa0a9da0a14"
 
   depends_on "gtk4"
   depends_on "libadwaita"
 
   resource "cef-runtime" do
-    url "https://github.com/Akinus21/Iron/releases/download/v0.0.115/cef-runtime.tar.gz"
+    url "https://github.com/Akinus21/Iron/releases/download/v0.0.116/cef-runtime.tar.gz"
     sha256 "eda165471198da6d347f20e4ca351b357adaf495878ff2ed732922968d5bb797"
   end
 
