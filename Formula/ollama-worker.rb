@@ -1,0 +1,19 @@
+class OllamaWorker < Formula
+  desc "Distributed Ollama worker node for ollama-queue"
+  homepage "https://github.com/Akinus21/ollama-queue-agent"
+  version "0.0.3"
+  license "MIT"
+
+  on_linux do
+    url "https://github.com/Akinus21/ollama-queue-agent/releases/download/v0.0.3/ollama-worker"
+    sha256 "bb447e11c29a3a56aca443ef208b6f75906237767721ce2f626036ec781ef208"
+  end
+
+  def install
+    bin.install "ollama-worker"
+  end
+
+  test do
+    assert_match "ollama-worker", shell_output("#{bin}/ollama-worker --help")
+  end
+end
