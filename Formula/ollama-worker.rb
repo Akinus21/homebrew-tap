@@ -1,7 +1,7 @@
 class OllamaWorker < Formula
   desc "Distributed Ollama worker node for ollama-queue"
   homepage "https://github.com/Akinus21/ollama-queue-agent"
-  version "0.0.107"
+  version "0.0.108"
   license "MIT"
 
   on_linux do
