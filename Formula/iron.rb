@@ -1,15 +1,15 @@
 class Iron < Formula
   desc "GTK4 keyboard-driven web browser for BlueAK"
   homepage "https://github.com/Akinus21/Iron"
-  version "0.0.142"
-  url "https://github.com/Akinus21/Iron/releases/download/v0.0.142/iron"
+  version "0.0.143"
+  url "https://github.com/Akinus21/Iron/releases/download/v0.0.143/iron"
   sha256 "332ace679cb0415e6e6d442eaf456dc47cdd6f206130d2a2f45825b138cc14cd"
 
   depends_on "gtk4"
   depends_on "libadwaita"
 
   resource "cef-runtime" do
-    url "https://github.com/Akinus21/Iron/releases/download/v0.0.142/cef-runtime.tar.gz"
+    url "https://github.com/Akinus21/Iron/releases/download/v0.0.143/cef-runtime.tar.gz"
     sha256 "eda165471198da6d347f20e4ca351b357adaf495878ff2ed732922968d5bb797"
   end
 
@@ -18,8 +18,11 @@ class Iron < Formula
     cef_runtime_dir = libexec/"cef-runtime"
 
     resource("cef-runtime").stage do
-      Dir.glob("*.so").each { |f| cef_runtime_dir.install f }
-      Dir.glob("*.so.*").each { |f| cef_runtime_dir.install f }
+      puts "CEF runtime files in staging:"
+      Dir.glob("*").each { |f| puts "  #{f}" }
+      puts "Locales:"
+      Dir.glob("locales/*").each { |f| puts "  #{f}" } if Dir.exist?("locales")
+      Dir.glob("*.so*").each { |f| cef_runtime_dir.install f }
       Dir.glob("*.dat").each { |f| cef_runtime_dir.install f }
       Dir.glob("*.bin").each { |f| cef_runtime_dir.install f }
       Dir.glob("*.json").each { |f| cef_runtime_dir.install f }
