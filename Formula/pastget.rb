@@ -5,7 +5,7 @@ class Pastget < Formula
   license "MIT"
 
   url "https://raw.githubusercontent.com/Akinus21/homebrew-tap/master/Formula/pastget.rb"
-  sha256 "your-sha256-here"
+  sha256 "a6ada2da8676a9ef0552f9a2b92d4105be21db74f8e41d14949ff4153c77bdbd"
 
   uses_from_macos "curl"
 
