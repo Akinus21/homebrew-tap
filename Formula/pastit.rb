@@ -1,10 +1,12 @@
 class Pastit < Formula
   desc "Pipe output to your Pasty instance"
-  homepage "https://paste.akinus21.com"
+  homepage "https://github.com/Akinus21/homebrew-tap"
   version "1.0.0"
   license "MIT"
 
-  # No build step needed - pure shell script
+  url "https://raw.githubusercontent.com/Akinus21/homebrew-tap/master/Formula/pastit.rb"
+  sha256 "c5efd7ccda62135428cc6a80bc29abad9d09a6d4327c3375927e33d7a6066751"
+
   depends_on "jq"
   uses_from_macos "curl"
 
