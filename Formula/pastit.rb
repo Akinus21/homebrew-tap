@@ -18,7 +18,7 @@ class Pastit < Formula
         --data-binary @- \
         | jq -r '"https://paste.akinus21.com/" + .key'
     SH
-    bin.install "pastit"
+    chmod "+x", bin/"pastit"
   end
 
   test do
