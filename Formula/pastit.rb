@@ -13,7 +13,7 @@ class Pastit < Formula
   def install
     (bin/"pastit").write <<~SH
       #!/bin/bash
-      curl -s -X POST https://paste.akinus21.com/api/v1/documents \
+      curl -s -X POST https://paste.akinus21.com/documents \
         -H "Content-Type: text/plain" \
         --data-binary @- \
         | jq -r '"https://paste.akinus21.com/" + .key'
