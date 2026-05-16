@@ -1,36 +1,38 @@
 class Gamemon < Formula
   desc "GameMon service daemon"
   homepage "https://github.com/Akinus21/GameMon"
-  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.6/GameMon.tar.gz"
-  sha256 "2c463d07635da87dd09fdb7bc569baaa8ef05b04cf0e623dbc66c5b30a901901"
+  url "https://github.com/Akinus21/GameMon/releases/download/#{NEW_TAG}/GameMon.tar.gz"
+  sha256 "#{SHA256}"
   license "MIT"
 
   def install
-    prefix.install Dir["GameMon/*"]
-    bin.install_symlink "#{prefix}/GameMon/GameMon-service" => "gamemon-service"
-    bin.install_symlink "#{prefix}/GameMon/GameMon-gui" => "gamemon-gui"
-    bin.install_symlink "#{prefix}/GameMon/GameMon-update" => "gamemon-update"
+    bin.install "GameMon-service" => "gamemon-service"
+    bin.install "GameMon-gui"     => "gamemon-gui"
+    bin.install "GameMon-update"  => "gamemon-update"
+    (share/"gamemon").install "resources"
   end
 
   def post_install
-    system "#{prefix}/GameMon/GameMon-service", "--install-resources"
+    # Symlink resources so GUI can find them at runtime
+    system "#{bin}/gamemon-service", "--install-resources"
 
-    # Install desktop entry
+    # Desktop entry
     desktop_dir = "#{ENV["HOME"]}/.local/share/applications"
     mkdir_p desktop_dir
+    icon_path = "#{share}/gamemon/resources/gamemon.png"
     File.write("#{desktop_dir}/gamemon.desktop", <<~DESKTOP)
       [Desktop Entry]
       Name=GameMon
       Comment=Automated Gaming Companion
-      Exec=#{bin}/gamemon-gui
-      Icon=#{prefix}/GameMon/resources/gamemon.png
+      Exec=gamemon-gui
+      Icon=#{icon_path}
       Type=Application
       Categories=Game;Utility;
       Terminal=false
     DESKTOP
     system "update-desktop-database", desktop_dir if which("update-desktop-database")
 
-    # Install systemd user service
+    # Systemd user service
     if which("systemctl")
       service_dir = "#{ENV["HOME"]}/.config/systemd/user"
       mkdir_p service_dir
@@ -40,7 +42,7 @@ class Gamemon < Formula
         After=graphical-session.target
 
         [Service]
-        ExecStart=#{bin}/gamemon-service
+        ExecStart=%h/.linuxbrew/bin/gamemon-service
         Restart=on-failure
         RestartSec=5
 
@@ -48,8 +50,7 @@ class Gamemon < Formula
         WantedBy=default.target
       SERVICE
       system "systemctl", "--user", "daemon-reload"
-      system "systemctl", "--user", "enable", "gamemon"
-      system "systemctl", "--user", "start", "gamemon"
+      system "systemctl", "--user", "enable", "--now", "gamemon"
     end
   end
 end
