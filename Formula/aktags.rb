@@ -13,7 +13,7 @@ class Aktags < Formula
   end
 
   def post_install
-    (var/"aktags").mkpath
+    mkdir_p var/"aktags"
   end
 
   service do
