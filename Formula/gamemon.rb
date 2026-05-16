@@ -1,8 +1,8 @@
 class Gamemon < Formula
   desc "GameMon service daemon"
   homepage "https://github.com/Akinus21/GameMon"
-  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.9/GameMon.tar.gz"
-  sha256 "249cc92276d3ffa75607e33f5f9c0fffa3508e0dad4490736e5cc842db1291ae"
+  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.10/GameMon.tar.gz"
+  sha256 "50ab5a53eaeb88f726c7333219442276fa23469cd0f63e80f6fc9cbdc840fd69"
   license "MIT"
 
   def install
@@ -12,42 +12,17 @@ class Gamemon < Formula
     (share/"gamemon").install "resources"
   end
 
+  service do
+    run [opt_bin/"gamemon-service"]
+    keep_alive true
+    restart :on_fail
+    log_path var/"log/gamemon.log"
+    error_log_path var/"log/gamemon.log"
+  end
+
   def post_install
-    system "#{bin}/gamemon-service", "--install-resources"
-
-    desktop_dir = "#{ENV["HOME"]}/.local/share/applications"
-    mkdir_p desktop_dir
-    icon_path = "#{share}/gamemon/resources/gamemon.png"
-    File.write("#{desktop_dir}/gamemon.desktop", <<~DESKTOP)
-      [Desktop Entry]
-      Name=GameMon
-      Comment=Automated Gaming Companion
-      Exec=gamemon-gui
-      Icon=#{icon_path}
-      Type=Application
-      Categories=Game;Utility;
-      Terminal=false
-    DESKTOP
-    system "update-desktop-database", desktop_dir if which("update-desktop-database")
-
-    if which("systemctl")
-      service_dir = "#{ENV["HOME"]}/.config/systemd/user"
-      mkdir_p service_dir
-      File.write("#{service_dir}/gamemon.service", <<~SERVICE)
-        [Unit]
-        Description=GameMon Gaming Monitor Service
-        After=graphical-session.target
-
-        [Service]
-        ExecStart=%h/.linuxbrew/bin/gamemon-service
-        Restart=on-failure
-        RestartSec=5
-
-        [Install]
-        WantedBy=default.target
-      SERVICE
-      system "systemctl", "--user", "daemon-reload"
-      system "systemctl", "--user", "enable", "--now", "gamemon"
-    end
+    (var/"gamemon").mkpath
+    (var/"log").mkpath
+    system bin/"gamemon-service", "--install-resources"
   end
 end
