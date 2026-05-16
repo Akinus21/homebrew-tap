@@ -1,15 +1,15 @@
 class Gamemon < Formula
   desc "GameMon service daemon"
   homepage "https://github.com/Akinus21/GameMon"
-  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.8/GameMon.tar.gz"
-  sha256 "f24076923c1090d935f6e0be45c87affb07d23c305fd951d02fdd20cbb369044"
+  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.9/GameMon.tar.gz"
+  sha256 "249cc92276d3ffa75607e33f5f9c0fffa3508e0dad4490736e5cc842db1291ae"
   license "MIT"
 
   def install
-    bin.install "GameMon/GameMon-service" => "gamemon-service"
-    bin.install "GameMon/GameMon-gui"     => "gamemon-gui"
-    bin.install "GameMon/GameMon-update"  => "gamemon-update"
-    (share/"gamemon").install "GameMon/resources"
+    bin.install "GameMon-service" => "gamemon-service"
+    bin.install "GameMon-gui"     => "gamemon-gui"
+    bin.install "GameMon-update"  => "gamemon-update"
+    (share/"gamemon").install "resources"
   end
 
   def post_install
