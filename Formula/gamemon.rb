@@ -1,22 +1,20 @@
 class Gamemon < Formula
   desc "GameMon service daemon"
   homepage "https://github.com/Akinus21/GameMon"
-  url "https://github.com/Akinus21/GameMon/releases/download/#{NEW_TAG}/GameMon.tar.gz"
-  sha256 "#{SHA256}"
+  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.8/GameMon.tar.gz"
+  sha256 "f24076923c1090d935f6e0be45c87affb07d23c305fd951d02fdd20cbb369044"
   license "MIT"
 
   def install
-    bin.install "GameMon-service" => "gamemon-service"
-    bin.install "GameMon-gui"     => "gamemon-gui"
-    bin.install "GameMon-update"  => "gamemon-update"
-    (share/"gamemon").install "resources"
+    bin.install "GameMon/GameMon-service" => "gamemon-service"
+    bin.install "GameMon/GameMon-gui"     => "gamemon-gui"
+    bin.install "GameMon/GameMon-update"  => "gamemon-update"
+    (share/"gamemon").install "GameMon/resources"
   end
 
   def post_install
-    # Symlink resources so GUI can find them at runtime
     system "#{bin}/gamemon-service", "--install-resources"
 
-    # Desktop entry
     desktop_dir = "#{ENV["HOME"]}/.local/share/applications"
     mkdir_p desktop_dir
     icon_path = "#{share}/gamemon/resources/gamemon.png"
@@ -32,7 +30,6 @@ class Gamemon < Formula
     DESKTOP
     system "update-desktop-database", desktop_dir if which("update-desktop-database")
 
-    # Systemd user service
     if which("systemctl")
       service_dir = "#{ENV["HOME"]}/.config/systemd/user"
       mkdir_p service_dir
