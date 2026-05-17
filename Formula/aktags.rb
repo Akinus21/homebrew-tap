@@ -5,7 +5,7 @@ class Aktags < Formula
 
   on_linux do
     url "https://github.com/Akinus21/Aktags/releases/download/v0.0.60/aktags"
-    sha256 ""
+    sha256 "9f4ab7c249bea8e57ebd7651b50ea76bc5605e3c41b105a4e080f608cd563dff"
   end
 
   def install
