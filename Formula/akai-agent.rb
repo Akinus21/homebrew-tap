@@ -4,11 +4,11 @@ class AkaiAgent < Formula
   version "0.0.0"
   license "MIT"
   on_linux do
-    url "https://github.com/Akinus21/akai-agent/releases/download/v0.0.0/akai-agent-linux-x86_64"
+    url "https://github.com/Akinus21/akai-agent/releases/download/v0.0.0/akai-agent"
     sha256 "5ffdc1248a1bf318355afdc49167659f8b50f8f4a1952d14bbd8e46afd70cff0"
   end
   def install
-    bin.install "akai-agent-linux-x86_64" => "akai-agent"
+    bin.install "akai-agent" => "akai-agent"
   end
   test do
     assert_match "akai-agent", shell_output("#{bin}/akai-agent --help")
