@@ -1,8 +1,8 @@
 class Gamemon < Formula
   desc "GameMon service daemon"
   homepage "https://github.com/Akinus21/GameMon"
-  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.15/GameMon.tar.gz"
-  sha256 "9bea7d9bb3b6d63c0601f95d56a4bd48d4d0c41e87a758d7a78bdce094fa7d19"
+  url "https://github.com/Akinus21/GameMon/releases/download/v0.6.16/GameMon.tar.gz"
+  sha256 "793152e11a1fd773cfaecc0c006f5080ec4d4aa97d58e95f21e8dc458cc3a306"
   license "MIT"
 
   def install
@@ -13,7 +13,6 @@ class Gamemon < Formula
 
   service do
     run [opt_bin/"gamemon-service"]
-    run_at_startup true
     keep_alive true
     log_path var/"log/gamemon.log"
     error_log_path var/"log/gamemon.log"
