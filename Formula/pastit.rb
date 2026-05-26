@@ -1,7 +1,7 @@
 class Pastit < Formula
   desc "Pipe output to your Pasty instance"
   homepage "https://github.com/Akinus21/homebrew-tap"
-  version "1.0.0"
+  version "1.0.1"
   license "MIT"
 
   url "https://raw.githubusercontent.com/Akinus21/homebrew-tap/master/Formula/pastit.rb"
