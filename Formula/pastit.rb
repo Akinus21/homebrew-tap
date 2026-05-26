@@ -5,7 +5,7 @@ class Pastit < Formula
   license "MIT"
 
   url "https://raw.githubusercontent.com/Akinus21/homebrew-tap/master/Formula/pastit.rb"
-  sha256 "983218bb734ee0ede11f9c95e6fb8f9a09856b66412d69ab37a0b5111feaebc2"
+  sha256 "50d0c12b78f34ee68c7d5a68549c5373a95ddd729f5e4d03a0f8a1470fed4eb0"
 
   depends_on "jq"
   uses_from_macos "curl"
