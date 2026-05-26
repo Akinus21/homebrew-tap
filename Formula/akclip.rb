@@ -1,7 +1,7 @@
 class Akclip < Formula
   desc "Clipboard tool with SSH-aware detection and streaming capture"
   homepage "https://github.com/Akinus21/akclip"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
 
   url "https://raw.githubusercontent.com/Akinus21/homebrew-tap/master/Formula/akclip.rb"
