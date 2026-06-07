@@ -1,10 +1,10 @@
 class Akclip < Formula
   desc "Clipboard utility for capturing stdin"
   homepage "https://github.com/Akinus21/akclip"
-  url "https://github.com/Akinus21/akclip/releases/download/v0.0.36/akclip.tar.gz"
-  sha256 "1e74c51f9a20589c3223c7a8c379eb1645318b7e58418de99d862206e89d835f"
+  url "https://github.com/Akinus21/akclip/releases/download/v0.0.37/akclip.tar.gz"
+  sha256 "609f0c40f2b087de5db89a4fb8442b5e81766e7556136dbf0f06fde645671f28"
   license "MIT"
-  version "v0.0.36"
+  version "v0.0.37"
 
   def install
     # The tarball extracts to akclip/ directory
