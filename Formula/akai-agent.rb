@@ -1,14 +1,14 @@
 class AkaiAgent < Formula
   desc "Remote GPU worker agent for the akai-net distributed inference system"
   homepage "https://github.com/Akinus21/akai-agent"
-  version "0.0.133"
+  version "0.0.134"
   license "MIT"
   depends_on "cmake"
   depends_on "gcc"
   depends_on "git"
   on_linux do
-    url "https://github.com/Akinus21/akai-agent/releases/download/v0.0.133/akai-agent"
-    sha256 "a19d336d68e602324bf215c14fca2b3d54a3379822264813e90b4f2d9a483499"
+    url "https://github.com/Akinus21/akai-agent/releases/download/v0.0.134/akai-agent"
+    sha256 "27c361e8da763c55575a7081443d36a5a2e929073b5900c7b63dfaadb29203e1"
   end
   def install
     bin.install "akai-agent" => "akai-agent"
