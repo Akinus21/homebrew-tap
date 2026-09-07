@@ -1,14 +1,14 @@
 class Akspraypaint < Formula
   desc "AKSprayPaint command line utility"
   homepage "https://github.com/Akinus21/AKSprayPaint"
-  url "https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.78/akspraypaint"
-  sha256 "6d129edc1b4497280bad49f86514c486c301aafb5065bfec1fad57f2638ad3a4"
-  version "0.0.78"
+  url "https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.79/akspraypaint"
+  sha256 "54c24fa6ba1bb3a5326a6763dbe48c463f715995a5edd0486389a579450dd88e"
+  version "0.0.79"
   license "MIT"
 
   def install
     bin.install "akspraypaint"
-    system "curl -sL https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.78/matugen -o #{bin}/matugen"
+    system "curl -sL https://github.com/Akinus21/AKSprayPaint/releases/download/v0.0.79/matugen -o #{bin}/matugen"
     chmod "+x", "#{bin}/matugen"
   end
 end
